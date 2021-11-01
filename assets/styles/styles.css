@@ -3,13 +3,19 @@ body {
 }
 
 .container {
-  width: 700px;
   margin: 4em auto;
+  padding: 1em;
   text-align: center;
+  display: flex;
+  justify-content: space-between;
 }
 
-table {
-  width: 100%;
+.container > * {
+  flex: 1;
+}
+
+#table {
+  flex: 2;
 }
 
 table,
@@ -33,7 +39,7 @@ tr:hover {
 }
 
 form {
-  margin-top: 3em;
+  margin-left: 3em;
 }
 
 .wrapper {
