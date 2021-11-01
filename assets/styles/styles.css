@@ -31,3 +31,27 @@ tr {
 tr:hover {
   background-color: #d6eeee;
 }
+
+form {
+  margin-top: 3em;
+}
+
+.wrapper {
+  width: 40%;
+  margin: 0 auto;
+  padding-left: 2em;
+}
+
+.form-row {
+  text-align: left;
+  margin: 1em auto;
+}
+
+input[type="button"] {
+  text-align: center;
+  margin-top: 1em;
+  border-radius: 5px;
+  border: 1px solid gray;
+  background: #d6eeee;
+  padding: 1em 1.5em;
+}
