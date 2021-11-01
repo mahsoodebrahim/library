@@ -1,10 +1,11 @@
-const myLibrary = [
+let myLibrary = [
   {
     title: "title1",
     author: "author1",
     pages: 1,
     read: "finished",
     isDisplayed: false,
+    id: 34,
   },
   {
     title: "title2",
@@ -12,6 +13,7 @@ const myLibrary = [
     pages: 2,
     read: "not read yet",
     isDisplayed: false,
+    id: 342,
   },
   {
     title: "title3",
@@ -19,6 +21,7 @@ const myLibrary = [
     pages: 3,
     read: "finished",
     isDisplayed: false,
+    id: 123,
   },
   {
     title: "title4",
@@ -26,8 +29,13 @@ const myLibrary = [
     pages: 4,
     read: "not read yet",
     isDisplayed: false,
+    id: 12,
   },
 ];
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -35,6 +43,7 @@ function Book(title, author, pages, read) {
   this.pages = pages;
   this.read = read;
   this.isDisplayed = false;
+  this.id = getRandomInt(1000);
 
   this.info = function () {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${
@@ -50,12 +59,14 @@ function showLibrary() {
     if (book.isDisplayed) return; // don't display a book that's already displayed
 
     book.isDisplayed = true;
+    const removeBookIcon = '<i class="fas fa-minus-circle"></i>';
 
     // Create elements for book attributes and row within the table
     const title = document.createElement("td");
     const author = document.createElement("td");
     const pages = document.createElement("td");
     const read = document.createElement("td");
+    const removeBookBtn = document.createElement("td");
     const bookRow = document.createElement("tr");
 
     // Add content for each element
@@ -63,9 +74,16 @@ function showLibrary() {
     author.appendChild(document.createTextNode(book.author));
     pages.appendChild(document.createTextNode(book.pages));
     read.appendChild(document.createTextNode(book.read));
+    removeBookBtn.innerHTML = removeBookIcon;
+    bookRow.id = book.id;
+
+    // add event listenr for removeBookBtn
+    removeBookBtn.addEventListener("click", () =>
+      removeBookFromLibrary(book.id)
+    );
 
     // Append book attributes to row
-    bookRow.append(title, author, pages, read);
+    bookRow.append(title, author, pages, read, removeBookBtn);
 
     // Append row to table
     table.appendChild(bookRow);
@@ -94,11 +112,24 @@ function addBookToLibrary() {
   showLibrary();
 }
 
+function removeBookFromLibrary(id) {
+  myLibrary = myLibrary.filter((book) => book.id !== id);
+
+  const bookRow = document.getElementById(id);
+  removeAllChildNodes(bookRow);
+}
+
 function clearInputs() {
   document.getElementById("title").value = null;
   document.getElementById("author").value = null;
   document.getElementById("pages").value = null;
   document.getElementById("read").checked = null;
+}
+
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
 }
 
 showLibrary();
