@@ -1,36 +1,9 @@
 let myLibrary = [
-  {
-    title: "title1",
-    author: "author1",
-    pages: 1,
-    read: "Finished",
-    isDisplayed: false,
-    id: 34,
-  },
-  {
-    title: "title2",
-    author: "author2",
-    pages: 2,
-    read: "Unfinished",
-    isDisplayed: false,
-    id: 342,
-  },
-  {
-    title: "title3",
-    author: "author3",
-    pages: 3,
-    read: "Finished",
-    isDisplayed: false,
-    id: 123,
-  },
-  {
-    title: "title4",
-    author: "author4",
-    pages: 4,
-    read: "Unfinished",
-    isDisplayed: false,
-    id: 12,
-  },
+  new Book("Pinocchio", "Carlo Collodi", 95, true),
+  new Book("Don Quixote", "Miguel de Cervantes", 324, true),
+  new Book("Harry Potter and the Sorcerer's Stone", "J.K. Rowling", 343, true),
+  new Book("Lord of the Rings", "J.R.R. Tolkien", 380, false),
+  new Book("Alice's Adventures in Wonderland", "Lewis Carroll", 285, false),
 ];
 
 function getRandomInt(max) {
@@ -41,7 +14,7 @@ function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  this.read = read;
+  this.read = read ? "Finished" : "Unfinished";
   this.isDisplayed = false;
   this.id = getRandomInt(1000);
 
