@@ -17,13 +17,13 @@ function Book(title, author, pages, read) {
   this.read = read ? "Finished" : "Unfinished";
   this.isDisplayed = false;
   this.id = getRandomInt(1000);
-
-  this.info = function () {
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${
-      this.read ? "Finished" : "Unfinished"
-    }`;
-  };
 }
+
+Book.prototype.info = function () {
+  return `${this.title} by ${this.author}, ${this.pages} pages, ${
+    this.read ? "Finished" : "Unfinished"
+  }`;
+};
 
 function showLibrary() {
   const table = document.getElementById("table");
